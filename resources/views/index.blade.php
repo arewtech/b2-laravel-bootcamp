@@ -43,14 +43,17 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-body">
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Name</label>
-                                <input type="email" class="form-control" id="exampleFormControlInput1"
-                                    placeholder="tulis task harianmu">
+                        <form action="{{ route('tasks.store') }}" method="POST">
+                            @csrf
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Name</label>
+                                    <input type="text" name="name" class="form-control"
+                                        id="exampleFormControlInput1" placeholder="tulis task harianmu">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Add Task</button>
                             </div>
-                            <button type="button" class="btn btn-primary">Add Task</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
