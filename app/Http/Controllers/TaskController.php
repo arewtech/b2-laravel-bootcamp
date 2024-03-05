@@ -9,15 +9,22 @@ class TaskController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $tasks = Task::latest()->get();
+        return view('index', compact('tasks'));
     }
 
     public function store(Request $request)
     {
-        $data = [
-            'name' => $request->name,
-        ];
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
         Task::create($data);
-        return back();
+        return back()->with('success', 'Task berhasil ditambahkan');
+    }
+
+    public function destroy(Task $task)
+    {
+        $task->delete();
+        return back()->with('success', 'Task berhasil dihapus');
     }
 }
